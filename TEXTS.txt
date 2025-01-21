@@ -1,6 +1,4 @@
-A1 || Mein Alltag ||
-
-Hallo, ich heiße Anna. Ich bin zwanzig Jahre alt und komme aus Deutschland. Ich wohne in Berlin. Ich lerne Deutsch in einer Sprachschule. Ich mag meine Klasse sehr. Meine Lehrerin ist nett und geduldig. Ich habe viele Freunde in der Schule. Wir üben jeden Tag Deutsch.
+A1 || Mein Alltag ||Hallo, ich heiße Anna. Ich bin zwanzig Jahre alt und komme aus Deutschland. Ich wohne in Berlin. Ich lerne Deutsch in einer Sprachschule. Ich mag meine Klasse sehr. Meine Lehrerin ist nett und geduldig. Ich habe viele Freunde in der Schule. Wir üben jeden Tag Deutsch.
 
 Jeden Morgen stehe ich um sieben Uhr auf. Dann frühstücke ich. Ich esse gern Brot mit Marmelade und trinke Tee. Danach gehe ich zu Fuß zur Schule. Der Weg ist kurz. Ich brauche nur zehn Minuten. In der Klasse sprechen wir langsam und wiederholen neue Wörter.
 
@@ -12,9 +10,7 @@ Am Abend esse ich mit meiner Familie zu Abend. Wir reden über unseren Tag. Dann
 
 Mein Traum ist es, gut Deutsch zu sprechen. Ich lerne jeden Tag neue Wörter und Grammatik. Ich wiederhole auch viel. Meine Freunde und meine Familie helfen mir sehr. Sie sprechen langsam und korrigieren meine Fehler. Ich freue mich über meine Fortschritte. Berlin ist sehr spannend! Ich liebe diese Stadt.
 
-A1 || Meine Familie ||
-
-Hallo, ich bin David. Ich komme aus Österreich und wohne in Wien. Ich bin neunzehn Jahre alt und lerne Deutsch in meiner Schule. Heute möchte ich über meine Familie sprechen. Meine Familie ist klein. Wir sind meine Mutter, mein Vater und ich. Wir haben einen Hund.
+A1 || Meine Familie ||Hallo, ich bin David. Ich komme aus Österreich und wohne in Wien. Ich bin neunzehn Jahre alt und lerne Deutsch in meiner Schule. Heute möchte ich über meine Familie sprechen. Meine Familie ist klein. Wir sind meine Mutter, mein Vater und ich. Wir haben einen Hund.
 
 Meine Mutter heißt Sabine. Sie ist Lehrerin an einer Grundschule. Sie unterrichtet Kunst und Musik. Sie ist sehr kreativ und malt gerne Bilder. Mein Vater heißt Thomas. Er arbeitet in einem Büro. Er ist oft beschäftigt. Trotzdem findet er Zeit für mich und unseren Hund.
 

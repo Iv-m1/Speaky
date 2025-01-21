@@ -307,10 +307,10 @@ def text_work(username: str):
 
     # Выводим содержимое выбранного текста
     print("\n=== ВЫБРАННЫЙ ТЕКСТ ===")
-    print(f"Уровень: {selected_text.get('level')}")
-    print(f"Название: {selected_text.get('title')}")
-    print("\nСодержимое:")
-    print(selected_text.get("content", "Текст отсутствует."))
+    # print(f"Уровень: {selected_text.get("level")}")
+    # print(f"Название: {selected_text.title}")
+    print(f"{selected_text.get("content")}")
+
 
 # ====== Заглушки для остальных пунктов меню ======
 
