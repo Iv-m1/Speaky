@@ -4,7 +4,7 @@ import hashlib
 
 USERS_FILE = "users.json"
 PASSWORDS_FILE = "passwords.json"
-TEXTS_FILE = "german_texts.json"  # Файл с немецкими текстами
+TEXTS_FILE = "TEXTS.txt"  # Файл с немецкими текстами
 
 def load_users() -> list:
     """
@@ -217,6 +217,44 @@ def text_work(username: str):
     затем показывает доступные тексты этого уровня.
     После выбора текста по номеру выводит его содержимое.
     """
+
+    def load_texts() -> list:
+        """
+        Читает файл TEXTS_FILE (texts.txt), парсит строки и формирует список словарей.
+        Формат каждой строки в texts.txt:
+        Уровень||Заголовок||Содержание
+        Пример:
+        A1||Titel A1-1||Hallo! Ich heiße ...
+        Возвращает список вида:
+        [
+            {
+              "level": "A1",
+              "title": "Titel A1-1",
+              "content": "Hallo! Ich heiße ..."
+            },
+            ...
+        ]
+        """
+        if not os.path.exists(TEXTS_FILE):
+            return []
+
+        texts = []
+        with open(TEXTS_FILE, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue  # пропускаем пустые строки
+                parts = line.split("||")
+                if len(parts) == 3:
+                    level, title, content = parts
+                    texts.append({
+                        "level": level.strip(),
+                        "title": title.strip(),
+                        "content": content.strip()
+                    })
+                # Если формат строки не соответствует, можно либо пропустить, либо вызвать ошибку
+        return texts
+
     print(f"\n[{username}] Работа с текстом")
     texts = load_texts()
     if not texts:
