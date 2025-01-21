@@ -219,41 +219,115 @@ def text_work(username: str):
     """
 
     def load_texts() -> list:
-        """
-        Читает файл TEXTS_FILE (texts.txt), парсит строки и формирует список словарей.
-        Формат каждой строки в texts.txt:
-        Уровень||Заголовок||Содержание
-        Пример:
-        A1||Titel A1-1||Hallo! Ich heiße ...
-        Возвращает список вида:
-        [
-            {
-              "level": "A1",
-              "title": "Titel A1-1",
-              "content": "Hallo! Ich heiße ..."
-            },
-            ...
-        ]
-        """
-        if not os.path.exists(TEXTS_FILE):
-            return []
+        # """
+        # Читает файл TEXTS_FILE (texts.txt), парсит строки и формирует список словарей.
+        # Формат каждой строки в texts.txt:
+        # Уровень||Заголовок||Содержание
+        # Пример:
+        # A1||Titel A1-1||Hallo! Ich heiße ...
+        # Возвращает список вида:
+        # [
+        #     {
+        #       "level": "A1",
+        #       "title": "Titel A1-1",
+        #       "content": "Hallo! Ich heiße ..."
+        #     },
+        #     ...
+        # ]
+        # """
+        # if not os.path.exists(TEXTS_FILE):
+        #     return []
+        #
+        # texts = []
+        # with open(TEXTS_FILE, "r", encoding="utf-8") as f:
+        #     for line in f:
+        #         line = line.strip()
+        #         if not line:
+        #             continue  # пропускаем пустые строки
+        #         parts = line.split("||")
+        #         if len(parts) == 3:
+        #             level, title, content = parts
+        #             texts.append({
+        #                 "level": level.strip(),
+        #                 "title": title.strip(),
+        #                 "content": content.strip()
+        #             })
+        #         # Если формат строки не соответствует,то можно либо пропустить, либо вызвать ошибку
+        # return texts
 
-        texts = []
-        with open(TEXTS_FILE, "r", encoding="utf-8") as f:
-            for line in f:
-                line = line.strip()
-                if not line:
-                    continue  # пропускаем пустые строки
-                parts = line.split("||")
-                if len(parts) == 3:
-                    level, title, content = parts
-                    texts.append({
-                        "level": level.strip(),
-                        "title": title.strip(),
-                        "content": content.strip()
-                    })
-                # Если формат строки не соответствует,то можно либо пропустить, либо вызвать ошибку
-        return texts
+
+
+
+            """
+            Считывает тексты из файла TEXTS_FILE.
+            Формат каждого текста:
+              Level: A1
+              Title: Text A1-1
+              <много строк контента>
+              ---END---
+
+            Возвращает список словарей:
+            [
+              {
+                "level": "A1",
+                "title": "Text A1-1",
+                "content": "все строки текста\nвключая пустые строки\n"
+              },
+              ...
+            ]
+            """
+            if not os.path.exists(TEXTS_FILE):
+                return []
+
+            texts = []
+            current_text = {
+                "level": None,
+                "title": None,
+                "content": []
+            }
+            reading_text = False  # Флаг, указывающий, начали ли мы считывать блок
+
+            with open(TEXTS_FILE, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.rstrip("\n")  # убираем только перевод строки справа
+
+                    # Если встретили пустую строку за пределами текста — пропускаем
+                    if not line and not reading_text:
+                        continue
+
+                    # Если находимся внутри текста и встретили разделитель
+                    if line.strip() == "---END---" and reading_text:
+                        # Сохраняем накопленный текст в список
+                        texts.append({
+                            "level": current_text["level"],
+                            "title": current_text["title"],
+                            "content": "\n".join(current_text["content"])
+                        })
+                        # Сбрасываем состояние для следующего текста
+                        current_text = {
+                            "level": None,
+                            "title": None,
+                            "content": []
+                        }
+                        reading_text = False
+                        continue
+
+                    # Если строка начинается с "Level: ", читаем уровень
+                    if line.startswith("Level:"):
+                        current_text["level"] = line.replace("Level:", "").strip()
+                        reading_text = True
+                        continue
+
+                    # Если строка начинается с "Title: ", читаем заголовок
+                    if line.startswith("Title:"):
+                        current_text["title"] = line.replace("Title:", "").strip()
+                        continue
+
+                    # Иначе считаем, что это часть контента
+                    if reading_text:
+                        current_text["content"].append(line)
+
+            return texts
 
     print(f"\n[{username}] Работа с текстом")
     texts = load_texts()
